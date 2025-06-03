@@ -1,7 +1,0 @@
-com\victor\minerador\commands\ComandoMinerador.class
-com\victor\minerador\listeners\MinerarListener.class
-com\victor\minerador\Minerador.class
-com\victor\minerador\model\NivelMineracao.class
-com\victor\minerador\data\PlayerManager.class
-com\victor\minerador\utils\BarraDeProgressoUtil.class
-com\victor\minerador\listeners\MinerarListener$1.class
