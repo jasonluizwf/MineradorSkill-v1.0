@@ -1,0 +1,10 @@
+name: Plugin
+version: '1.0-SNAPSHOT'
+main: com.victor.plugin.Plugin
+api-version: '1.21'
+authors: [ victor ]
+description: plugin em teste
+commands:
+  minerador:
+    description: Mostra sua barra de progresso de mineração
+    usage: /minerador
