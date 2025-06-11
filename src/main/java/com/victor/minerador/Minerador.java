@@ -19,9 +19,11 @@ public final class Minerador extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
         Bukkit.getPluginManager().registerEvents(new MinerarListener(this), this);
+        /*
         Objects.requireNonNull(getCommand("minerador")).setExecutor(
                 new ComandoMinerador(playerManager, barraDeProgressoUtil)
         );
+         */
 
         getLogger().info("Plugin Minerador ativado!");
     }
