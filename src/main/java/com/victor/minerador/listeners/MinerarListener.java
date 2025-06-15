@@ -3,10 +3,7 @@ package com.victor.minerador.listeners;
 import com.victor.minerador.Minerador;
 import com.victor.minerador.data.PlayerManager;
 import com.victor.minerador.model.NivelMineracao;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
@@ -16,6 +13,8 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -53,6 +52,7 @@ public class MinerarListener implements Listener {
                         case INICIANTE -> "§a2x1 para " + Material.IRON_PICKAXE.name();
                         case AVANCADO -> "§b3x3 " + Material.IRON_PICKAXE.name();
                         case MESTRE -> "§e5x5 " + Material.IRON_PICKAXE.name();
+                        case GOD -> "Ganho na velocidade de mineração";
                     });
         }
     }
@@ -86,6 +86,10 @@ public class MinerarListener implements Listener {
         boolean novoEstado = !playerManager.isModoMinerador(p);
 
         ultimoClique.put(id, agora); // atualiza o tempo do clique
+
+        if(atual >= NivelMineracao.GOD.getBlocosNecessarios()) {
+            p.addPotionEffect(new PotionEffect(PotionEffectType.HASTE, Integer.MAX_VALUE, 1));
+        }
 
         switch (tipo) {
             case IRON_PICKAXE -> {
@@ -147,7 +151,6 @@ public class MinerarListener implements Listener {
         int atual = playerManager.carregarProgresso(id);
 
         if(tipo.name().endsWith("_PICKAXE")){
-
             Block blocoCentral = blockBreakEvent.getBlock();
             World mundo = blocoCentral.getWorld();
 

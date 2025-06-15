@@ -1,7 +1,10 @@
+name: Minerador
 version: '1.0-SNAPSHOT'
+main: com.victor.minerador.Minerador
 api-version: '1.21'
 authors: [ victor ]
 description: plugin em teste
 commands:
   minerador:
+    description: Mostra sua barra de mineração
     usage: /minerador

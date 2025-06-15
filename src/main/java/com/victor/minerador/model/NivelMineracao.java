@@ -3,7 +3,8 @@ package com.victor.minerador.model;
 public enum NivelMineracao {
     INICIANTE(500),
     AVANCADO(2000),
-    MESTRE(5000);
+    MESTRE(5000),
+    GOD(10000);
 
     private final int blocosNecessarios;
 
@@ -24,5 +25,4 @@ public enum NivelMineracao {
         }
         return atual;
     }
-
 }
