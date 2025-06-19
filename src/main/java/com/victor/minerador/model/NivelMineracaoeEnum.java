@@ -1,6 +1,6 @@
 package com.victor.minerador.model;
 
-public enum NivelMineracao {
+public enum NivelMineracaoeEnum {
     INICIANTE(500),
     AVANCADO(2000),
     MESTRE(5000),
@@ -8,7 +8,7 @@ public enum NivelMineracao {
 
     private final int blocosNecessarios;
 
-    NivelMineracao(int blocos) {
+    NivelMineracaoeEnum(int blocos) {
         this.blocosNecessarios = blocos;
     }
 
@@ -16,9 +16,9 @@ public enum NivelMineracao {
         return blocosNecessarios;
     }
 
-    public static NivelMineracao porBlocos(int blocos) {
-        NivelMineracao atual = INICIANTE;
-        for (NivelMineracao nivel : values()) {
+    public static NivelMineracaoeEnum porBlocos(int blocos) {
+        NivelMineracaoeEnum atual = INICIANTE;
+        for (NivelMineracaoeEnum nivel : values()) {
             if (blocos >= nivel.getBlocosNecessarios()) {
                 atual = nivel;
             }

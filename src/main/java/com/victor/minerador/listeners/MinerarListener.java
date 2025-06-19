@@ -2,7 +2,7 @@ package com.victor.minerador.listeners;
 
 import com.victor.minerador.Minerador;
 import com.victor.minerador.data.PlayerManager;
-import com.victor.minerador.model.NivelMineracao;
+import com.victor.minerador.model.NivelMineracaoeEnum;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -43,7 +43,7 @@ public class MinerarListener implements Listener {
 
         playerManager.salvarProgresso(id, contadorSalvo);
 
-        NivelMineracao nivel = NivelMineracao.porBlocos(contadorSalvo);
+        NivelMineracaoeEnum nivel = NivelMineracaoeEnum.porBlocos(contadorSalvo);
 
         if (nivel != null && contadorSalvo == nivel.getBlocosNecessarios()) {
             p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.3f, 1.0f);
@@ -76,8 +76,12 @@ public class MinerarListener implements Listener {
 
         int atual = playerManager.carregarProgresso(id);
 
+        if(atual >= NivelMineracaoeEnum.GOD.getBlocosNecessarios()) {
+            p.addPotionEffect(new PotionEffect(PotionEffectType.HASTE, 100, 1));
+        }
+
         if (agora - ultimo < 1500) {
-            if (atual >= NivelMineracao.INICIANTE.getBlocosNecessarios()) {
+            if (atual >= NivelMineracaoeEnum.INICIANTE.getBlocosNecessarios()) {
                 p.sendMessage("§7Aguarde um pouco antes de ativar novamente.");
             } else p.sendMessage("§7Você não quebrou blocos suficientes. " + atual);
             return;
@@ -87,13 +91,9 @@ public class MinerarListener implements Listener {
 
         ultimoClique.put(id, agora); // atualiza o tempo do clique
 
-        if(atual >= NivelMineracao.GOD.getBlocosNecessarios()) {
-            p.addPotionEffect(new PotionEffect(PotionEffectType.HASTE, Integer.MAX_VALUE, 1));
-        }
-
         switch (tipo) {
             case IRON_PICKAXE -> {
-                if (atual >= NivelMineracao.INICIANTE.getBlocosNecessarios()) {
+                if (atual >= NivelMineracaoeEnum.INICIANTE.getBlocosNecessarios()) {
                     if (novoEstado) {
                         p.sendMessage("§aModo Minerador §lATIVADO§a! Quebre blocos em 2x1.");
                     } else {
@@ -103,7 +103,7 @@ public class MinerarListener implements Listener {
                 playerManager.setModoMinerador(p, novoEstado);
             }
             case DIAMOND_PICKAXE -> {
-                if (atual >= NivelMineracao.AVANCADO.getBlocosNecessarios()) {
+                if (atual >= NivelMineracaoeEnum.AVANCADO.getBlocosNecessarios()) {
                     if (novoEstado) {
                         p.sendMessage("§aModo Minerador §lATIVADO§a! Quebre blocos em 3x3.");
                     } else {
@@ -113,7 +113,7 @@ public class MinerarListener implements Listener {
                 playerManager.setModoMinerador(p, novoEstado);
             }
             case NETHERITE_PICKAXE -> {
-                if (atual >= NivelMineracao.MESTRE.getBlocosNecessarios()) {
+                if (atual >= NivelMineracaoeEnum.MESTRE.getBlocosNecessarios()) {
                     if (novoEstado) {
                         p.sendMessage("§aModo Minerador §lATIVADO§a! Quebre blocos em 5x5.");
                     } else {
@@ -169,7 +169,7 @@ public class MinerarListener implements Listener {
 
             switch (p.getInventory().getItemInMainHand().getType()) {
                 case IRON_PICKAXE -> {
-                    if (atual >= NivelMineracao.INICIANTE.getBlocosNecessarios()) {
+                    if (atual >= NivelMineracaoeEnum.INICIANTE.getBlocosNecessarios()) {
                         // Quebrar blocos ao redor do bloco 2X1
                         int x = 0, z = 0;
                         for (int y = -1; y <= 0; y++) {
@@ -188,7 +188,7 @@ public class MinerarListener implements Listener {
                     }
                 }
                 case DIAMOND_PICKAXE -> {
-                    if (atual >= NivelMineracao.AVANCADO.getBlocosNecessarios()) {
+                    if (atual >= NivelMineracaoeEnum.AVANCADO.getBlocosNecessarios()) {
                         // Quebrar blocos ao redor do bloco 3X3
                         for (int x = -1; x <= 1; x++) {
                             for (int y = -1; y <= 1; y++) {
@@ -210,7 +210,7 @@ public class MinerarListener implements Listener {
                     }
                 }
                 case NETHERITE_PICKAXE -> {
-                    if (atual >= NivelMineracao.MESTRE.getBlocosNecessarios()) {
+                    if (atual >= NivelMineracaoeEnum.MESTRE.getBlocosNecessarios()) {
                         // Quebrar blocos ao redor do bloco 5X5
                         for (int x = -2; x <= 2; x++) {
                             for (int y = -2; y <= 2; y++) {

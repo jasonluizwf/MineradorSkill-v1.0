@@ -1,15 +1,15 @@
 package com.victor.minerador.utils;
 
-import com.victor.minerador.model.NivelMineracao;
+import com.victor.minerador.model.NivelMineracaoeEnum;
 import org.bukkit.entity.Player;
 
 public class BarraDeProgressoUtil {
 
     public void mostrarBarra(Player p, int blocos) {
 
-        int iniciante = NivelMineracao.INICIANTE.getBlocosNecessarios();
-        int avancado = NivelMineracao.AVANCADO.getBlocosNecessarios();
-        int mestre = NivelMineracao.MESTRE.getBlocosNecessarios();
+        int iniciante = NivelMineracaoeEnum.INICIANTE.getBlocosNecessarios();
+        int avancado = NivelMineracaoeEnum.AVANCADO.getBlocosNecessarios();
+        int mestre = NivelMineracaoeEnum.MESTRE.getBlocosNecessarios();
 
         int proximo;
 
@@ -33,11 +33,11 @@ public class BarraDeProgressoUtil {
         }
 
         if (nivel >= mestre) {
-            nivelString = NivelMineracao.MESTRE.name();
+            nivelString = NivelMineracaoeEnum.MESTRE.name();
         } else if (nivel >= avancado) {
-            nivelString = NivelMineracao.AVANCADO.name();
+            nivelString = NivelMineracaoeEnum.AVANCADO.name();
         } else if (nivel >= iniciante) {
-            nivelString = NivelMineracao.INICIANTE.name();
+            nivelString = NivelMineracaoeEnum.INICIANTE.name();
         }
 
         p.sendMessage("§eMinerador nivel " + nivelString + " [" + barraVisual + "§e] §f" + blocos + "/" + proximo);
