@@ -1,0 +1,4 @@
+com\victor\minerador\utils\ItemFactory.class
+com\victor\minerador\model\NivelMineracaoeEnum.class
+com\victor\minerador\model\PremiacaoEnum.class
+com\victor\minerador\utils\PremiacaoPlayer.class

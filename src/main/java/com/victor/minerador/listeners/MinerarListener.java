@@ -3,6 +3,7 @@ package com.victor.minerador.listeners;
 import com.victor.minerador.Minerador;
 import com.victor.minerador.data.PlayerManager;
 import com.victor.minerador.model.NivelMineracaoeEnum;
+import com.victor.minerador.utils.PremiacaoPlayer;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -25,9 +26,11 @@ public class MinerarListener implements Listener {
     private final Map<UUID, BlockFace> ultimaFace = new HashMap<>();
     private final Map<UUID, Long> ultimoClique = new HashMap<>();
     private final PlayerManager playerManager;
+    private final PremiacaoPlayer premiacaoPlayer;
 
-    public MinerarListener(Minerador minerador) {
-        this.playerManager = new PlayerManager(minerador);
+    public MinerarListener(Minerador minerador, PremiacaoPlayer premiacaoPlayer) {
+        this.playerManager = minerador.getPlayerManager();
+        this.premiacaoPlayer = premiacaoPlayer;
     }
 
     @EventHandler
@@ -42,6 +45,7 @@ public class MinerarListener implements Listener {
         int contadorSalvo = contador + 1;
 
         playerManager.salvarProgresso(id, contadorSalvo);
+        premiacaoPlayer.premiarPlayer(p);
 
         NivelMineracaoeEnum nivel = NivelMineracaoeEnum.porBlocos(contadorSalvo);
 

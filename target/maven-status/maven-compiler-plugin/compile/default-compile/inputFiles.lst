@@ -2,5 +2,8 @@ C:\Users\jason\IdeaProjects\MineradorSkill-v1.0\src\main\java\com\victor\minerad
 C:\Users\jason\IdeaProjects\MineradorSkill-v1.0\src\main\java\com\victor\minerador\data\PlayerManager.java
 C:\Users\jason\IdeaProjects\MineradorSkill-v1.0\src\main\java\com\victor\minerador\listeners\MinerarListener.java
 C:\Users\jason\IdeaProjects\MineradorSkill-v1.0\src\main\java\com\victor\minerador\Minerador.java
-C:\Users\jason\IdeaProjects\MineradorSkill-v1.0\src\main\java\com\victor\minerador\model\NivelMineracao.java
+C:\Users\jason\IdeaProjects\MineradorSkill-v1.0\src\main\java\com\victor\minerador\model\NivelMineracaoeEnum.java
+C:\Users\jason\IdeaProjects\MineradorSkill-v1.0\src\main\java\com\victor\minerador\model\PremiacaoEnum.java
 C:\Users\jason\IdeaProjects\MineradorSkill-v1.0\src\main\java\com\victor\minerador\utils\BarraDeProgressoUtil.java
+C:\Users\jason\IdeaProjects\MineradorSkill-v1.0\src\main\java\com\victor\minerador\utils\ItemFactory.java
+C:\Users\jason\IdeaProjects\MineradorSkill-v1.0\src\main\java\com\victor\minerador\utils\PremiacaoPlayer.java
