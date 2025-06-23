@@ -4,7 +4,6 @@ import com.victor.minerador.Minerador;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
@@ -20,6 +19,10 @@ public class ItemFactory {
         this.plugin = plugin;
     }
 
+    /**
+     * Função para criar uma picareta personalizada de diamante.
+     * @return retorna um Obj do tipo ItemStack já personalizado.
+     */
     public ItemStack criarPicaretaPersonalizada() {
         ItemStack item = new ItemStack(Material.DIAMOND_PICKAXE);
         ItemMeta meta = item.getItemMeta();
@@ -34,9 +37,8 @@ public class ItemFactory {
             meta.setLore(lore);
 
             //brilho falso sem mostrar encantamento
-            meta.addEnchant(Enchantment.EFFICIENCY, 10, true);
-            meta.addEnchant(Enchantment.UNBREAKING, 4, true);
-            meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+            meta.addEnchant(Enchantment.EFFICIENCY, 5, true);
+            meta.addEnchant(Enchantment.UNBREAKING, 3, true);
 
             //tag personalizada para identificar dps
             NamespacedKey key = new NamespacedKey(plugin, "minerador_item");
