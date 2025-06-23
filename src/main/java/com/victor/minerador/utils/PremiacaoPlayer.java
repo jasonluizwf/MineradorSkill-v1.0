@@ -1,33 +1,27 @@
 package com.victor.minerador.utils;
 
-import com.victor.minerador.Minerador;
+import com.victor.minerador.data.PlayerManager;
 import com.victor.minerador.model.PremiacaoEnum;
 import org.bukkit.entity.Player;
-
 import java.util.UUID;
-
-import static org.bukkit.Bukkit.getLogger;
 
 public class PremiacaoPlayer {
 
-    private final Minerador plugin;
+    /**
+     * Função para premiar um player que alcança a quantidade de blocos, premia com qualquer item criado no itemFactory.
+     * @param player Deve ser passado como parametro um objeto do tipo player.
+     * @param playerManager Deve ser passado como parametro um objeto que gerencia player.
+     * @param itemFactory Deve ser passado como parametro um objeto que cria itens.
+     */
+    public static void premiarPlayer(Player player, PlayerManager playerManager, ItemFactory itemFactory) {
+        if(playerManager == null) return;
 
-    public PremiacaoPlayer(Minerador plugin) {
-        this.plugin = plugin;
-    }
-
-    public void premiarPlayer(Player p) {
-        getLogger().info("entrou para premiar antes do if");
-
-        if(p == null) return;
-        getLogger().info("passou o if");
-
-        UUID id = p.getUniqueId();
-        int qtdBlocos = plugin.getPlayerManager().carregarProgresso(id);
+        UUID id = player.getUniqueId();
+        int qtdBlocos = playerManager.carregarProgresso(id);
 
         if(qtdBlocos == PremiacaoEnum.PRIMEIRA.getQtdBlocos()) {
-            p.getInventory().addItem(plugin.getItemFactory().criarPicaretaPersonalizada());
-            p.sendMessage("Parabéns! Você ganhou sua picareta!");
+            player.getInventory().addItem(itemFactory.criarPicaretaPersonalizada());
+            player.sendMessage("Parabéns! Você ganhou sua picareta!");
         }
     }
 }
