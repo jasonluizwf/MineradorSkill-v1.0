@@ -3,6 +3,7 @@ package com.victor.minerador.listeners;
 import com.victor.minerador.Minerador;
 import com.victor.minerador.data.PlayerManager;
 import com.victor.minerador.model.NivelMineracaoeEnum;
+import com.victor.minerador.utils.ItemFactory;
 import com.victor.minerador.utils.PremiacaoPlayer;
 import org.bukkit.*;
 import org.bukkit.block.Block;
@@ -16,7 +17,6 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -26,11 +26,11 @@ public class MinerarListener implements Listener {
     private final Map<UUID, BlockFace> ultimaFace = new HashMap<>();
     private final Map<UUID, Long> ultimoClique = new HashMap<>();
     private final PlayerManager playerManager;
-    private final PremiacaoPlayer premiacaoPlayer;
+    private final ItemFactory itemFactory;
 
-    public MinerarListener(Minerador minerador, PremiacaoPlayer premiacaoPlayer) {
+    public MinerarListener(Minerador minerador, ItemFactory itemFactory) {
         this.playerManager = minerador.getPlayerManager();
-        this.premiacaoPlayer = premiacaoPlayer;
+        this.itemFactory = itemFactory;
     }
 
     @EventHandler
@@ -45,7 +45,7 @@ public class MinerarListener implements Listener {
         int contadorSalvo = contador + 1;
 
         playerManager.salvarProgresso(id, contadorSalvo);
-        premiacaoPlayer.premiarPlayer(p);
+        PremiacaoPlayer.premiarPlayer(p, playerManager, itemFactory);
 
         NivelMineracaoeEnum nivel = NivelMineracaoeEnum.porBlocos(contadorSalvo);
 
